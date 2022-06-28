@@ -1,0 +1,53 @@
+{
+  "nodes": {
+    "esp-r-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-rSqieg6AeNRbdoRB1XJYi3obN+wtWKaisJWVh51LaBc=",
+        "type": "tarball",
+        "url": "https://www.esru.strath.ac.uk/Downloads/esp-r/ESP-r_V13.3.14_Src.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://www.esru.strath.ac.uk/Downloads/esp-r/ESP-r_V13.3.14_Src.tar.gz"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1656265786,
+        "narHash": "sha256-A9RkoGrxzsmMm0vily18p92Rasb+MbdDMaSnzmywXKw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "cd90e773eae83ba7733d2377b6cdf84d45558780",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "rad5r-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-gShz8hNMCCSiAfeClyrdkUC4yQVz33OxrrYDHmHy4so=",
+        "type": "tarball",
+        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2all.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2all.tar.gz"
+      }
+    },
+    "root": {
+      "inputs": {
+        "esp-r-src": "esp-r-src",
+        "nixpkgs": "nixpkgs",
+        "rad5r-src": "rad5r-src"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
