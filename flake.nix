@@ -51,7 +51,7 @@
               --replace /usr/lib/X11 ${pkgs.xorg.libX11}/lib \
               --replace /usr/include/X11 ${pkgs.xorg.xorgproto}/include/X11
 
-            for i in $(grep --exclude Install -rl '/opt/esp-r')
+            for i in $(grep --exclude Install -rl '/opt/esp-r' ./src)
             do
               substituteInPlace $i \
                 --replace /opt/esp-r $out
