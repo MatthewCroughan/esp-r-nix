@@ -47,9 +47,14 @@
             patchShebangs ./Install
             patchShebangs ./modish/*
 
+            substituteInPlace ./src/epdf/newnet.F \
+              --replace ")                                      '" ")"
+
             substituteInPlace ./Install \
               --replace /usr/lib/X11 ${pkgs.xorg.libX11}/lib \
-              --replace /usr/include/X11 ${pkgs.xorg.xorgproto}/include/X11
+              --replace /usr/include/X11 ${pkgs.xorg.xorgproto}/include/X11 \
+              --replace 'mode="interactive"' 'mode="silent"' \
+              --replace '-mcmodel=medium' '-mcmodel=medium -ffixed-line-length-none -ffree-line-length-none'
 
             for i in $(grep --exclude Install -rl '/opt/esp-r' ./src)
             do
