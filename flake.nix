@@ -16,6 +16,14 @@
     in
     {
       packages.x86_64-linux = {
+#        modish = pkgs.perlPackages.buildPerlPackage {
+#          pname = "Modish";
+#          version = "0.669";
+#          src = builtins.fetchurl {
+#            url = "https://cpan.metacpan.org/authors/id/G/GL/GLBRUNE/Sim-OPT-0.669.tar.gz";
+#            sha256 = "1q35bayvkwrggia5jvjrrjg8shsp0snna1xy75v191qlhbi5ycc9";
+#          };
+#        };
         rad5r = pkgs.stdenv.mkDerivation {
           name = "rad5r";
           src = rad5r-src;
@@ -37,9 +45,17 @@
           installPhase = "true";
           buildPhase = ''
             patchShebangs ./Install
+            patchShebangs ./modish/*
+
             substituteInPlace ./Install \
               --replace /usr/lib/X11 ${pkgs.xorg.libX11}/lib \
               --replace /usr/include/X11 ${pkgs.xorg.xorgproto}/include/X11
+
+            for i in $(grep --exclude Install -rl '/opt/esp-r')
+            do
+              substituteInPlace $i \
+                --replace /opt/esp-r $out
+            done
 
             ./Install -d $out
 
