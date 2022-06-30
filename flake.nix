@@ -1,6 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    rad5r-missingFiles = {
+      url = "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz";
+      flake = false;
+    };
     esp-r-src = {
       url = "https://www.esru.strath.ac.uk/Downloads/esp-r/ESP-r_V13.3.14_Src.tar.gz";
       flake = false;
@@ -10,7 +14,7 @@
       flake = false;
     };
   };
-  outputs = { self, nixpkgs, esp-r-src, rad5r-src }:
+  outputs = { self, nixpkgs, esp-r-src, rad5r-src, rad5r-missingFiles }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       realCsh = pkgs.writeShellScriptBin "csh"
@@ -36,10 +40,17 @@
           prePatch = ''
             sed -i '/fixup_bundle/d' InstallRules/dependencies.cmake.in
           '';
+          # Some files are missing from the latest radiance, that shouldn't
+          # have been deleted by the authors. But they never tested their code.
+          # https://github.com/NREL/Radiance/issues/15
+          postFixup = ''
+            cp ${rad5r-missingFiles}/lib/dirt.cal $out/lib
+            cp ${rad5r-missingFiles}/lib/picture.cal $out/lib
+          '';
         };
-        esp-r-wrapped = pkgs.symlinkJoin {
-          name = "esp-r-wrapped";
-          paths = [ self.packages.x86_64-linux.esp-r ];
+        esp-r = pkgs.symlinkJoin {
+          name = "esp-r";
+          paths = [ self.packages.x86_64-linux.esp-r-unwrapped ];
           buildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/esp-r \
@@ -50,7 +61,7 @@
               --set RAYPATH "${self.packages.x86_64-linux.rad5r}/lib"
           '';
         };
-        esp-r = pkgs.stdenv.mkDerivation {
+        esp-r-unwrapped = pkgs.stdenv.mkDerivation {
           name = "esp-r";
           src = esp-r-src;
           buildInputs = with pkgs; [ makeWrapper gtk2 libxslt libxml2 ];

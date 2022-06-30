@@ -28,6 +28,18 @@
         "type": "github"
       }
     },
+    "rad5r-missingFiles": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-TI44uriIuQG0VZ0DJpt7CqEMUo+k3YKWdJRDqJASTIU=",
+        "type": "tarball",
+        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz"
+      }
+    },
     "rad5r-src": {
       "flake": false,
       "locked": {
@@ -49,6 +61,7 @@
       "inputs": {
         "esp-r-src": "esp-r-src",
         "nixpkgs": "nixpkgs",
+        "rad5r-missingFiles": "rad5r-missingFiles",
         "rad5r-src": "rad5r-src"
       }
     }
