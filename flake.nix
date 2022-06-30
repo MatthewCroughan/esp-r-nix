@@ -61,11 +61,15 @@
             patchShebangs ./Install
             patchShebangs ./modish/*
 
+            substituteInPlace ./src/eprj/cadio.F \
+              --replace 'cfg*144,cfg_path*84,cfg_root*72,doc_file*96' 'cfg*4096,cfg_path*4096,cfg_root*4096,doc_file*4096'
+
             substituteInPlace ./src/epdf/newnet.F \
               --replace ")                                      '" ")"
 
             substituteInPlace ./Install \
               --replace /usr/lib/X11 ${pkgs.xorg.libX11}/lib \
+              --replace /usr/include/libxml2 ${pkgs.libxml2.dev}/include/libxml2 \
               --replace /usr/include/X11 ${pkgs.xorg.xorgproto}/include/X11 \
               --replace 'mode="interactive"' 'mode="silent"' \
               --replace '-mcmodel=medium' '-mcmodel=medium -ffixed-line-length-none -ffree-line-length-none'
