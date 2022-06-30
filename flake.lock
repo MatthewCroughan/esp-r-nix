@@ -31,13 +31,18 @@
     "rad5r-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-gShz8hNMCCSiAfeClyrdkUC4yQVz33OxrrYDHmHy4so=",
-        "type": "tarball",
-        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2all.tar.gz"
+        "lastModified": 1535820159,
+        "narHash": "sha256-3B8sTrE9SEuBPjhbepZN8NwK9PFnOgTMdB+x++sEqTc=",
+        "owner": "NREL",
+        "repo": "Radiance",
+        "rev": "a46558bb5f7ee140f732522bf10a578ebcc6d4cd",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2all.tar.gz"
+        "owner": "NREL",
+        "ref": "5.2.2",
+        "repo": "Radiance",
+        "type": "github"
       }
     },
     "root": {

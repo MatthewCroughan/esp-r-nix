@@ -6,7 +6,7 @@
       flake = false;
     };
     rad5r-src = {
-      url = "https://floyd.lbl.gov/radiance/dist/rad5R2all.tar.gz";
+      url = "github:NREL/Radiance/5.2.2";
       flake = false;
     };
   };
@@ -27,21 +27,17 @@
         rad5r = pkgs.stdenv.mkDerivation {
           name = "rad5r";
           src = rad5r-src;
-          buildInputs = with pkgs; [ libGLU qt512.full libtiff ];
+          buildInputs = with pkgs; [ libGLU libtiff ];
           nativeBuildInputs = with pkgs; [ cmake ];
           cmakeFlags = [
             "-DBUILD_HEADLESS=1"
           ];
-          prePatch = ''
-            substituteInPlace CMakeLists.txt \
-              --replace resources cmake_tests
-          '';
         };
         esp-r = pkgs.stdenv.mkDerivation {
           name = "esp-r";
           src = esp-r-src;
           buildInputs = with pkgs; [ makeWrapper gtk2 libxslt libxml2 ];
-          nativeBuildInputs = with pkgs; [ pkg-config gfortran which ];
+          nativeBuildInputs = with pkgs; [ pkg-config gfortran which xterm ];
           installPhase = "true";
           buildPhase = ''
             export HOME=$TMP
