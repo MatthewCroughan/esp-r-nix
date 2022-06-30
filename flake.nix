@@ -76,7 +76,7 @@
                 --replace /opt/esp-r $out
             done
 
-            ./Install -d $out
+            ./Install --debug -d $out
           '';
         };
       };
