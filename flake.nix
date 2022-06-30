@@ -56,7 +56,7 @@
               --replace 'mode="interactive"' 'mode="silent"' \
               --replace '-mcmodel=medium' '-mcmodel=medium -ffixed-line-length-none -ffree-line-length-none'
 
-            for i in $(grep --exclude Install -rl '/opt/esp-r' ./src)
+            for i in $(grep -rl '/opt/esp-r' ./src)
             do
               substituteInPlace $i \
                 --replace /opt/esp-r $out
