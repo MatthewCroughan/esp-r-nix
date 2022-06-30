@@ -41,9 +41,10 @@
           name = "esp-r";
           src = esp-r-src;
           buildInputs = with pkgs; [ makeWrapper gtk2 libxslt libxml2 ];
-          nativeBuildInputs = with pkgs; [ pkg-config gfortran ];
+          nativeBuildInputs = with pkgs; [ pkg-config gfortran which ];
           installPhase = "true";
           buildPhase = ''
+            export HOME=$TMP
             patchShebangs ./Install
             patchShebangs ./modish/*
 
