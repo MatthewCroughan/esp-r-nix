@@ -37,6 +37,19 @@
             sed -i '/fixup_bundle/d' InstallRules/dependencies.cmake.in
           '';
         };
+        esp-r-wrapped = pkgs.symlinkJoin {
+          name = "esp-r-wrapped";
+          paths = [ self.packages.x86_64-linux.esp-r ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/esp-r \
+              --prefix PATH : $out/bin
+
+            wrapProgram $out/bin/esp-r \
+              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm pkgs.imagemagick pkgs.xfig pkgs.fig2dev pkgs.nedit realCp ]} \
+              --set RAYPATH "${self.packages.x86_64-linux.rad5r}/lib"
+          '';
+        };
         esp-r = pkgs.stdenv.mkDerivation {
           name = "esp-r";
           src = esp-r-src;
@@ -64,12 +77,6 @@
             done
 
             ./Install -d $out
-
-            wrapProgram $out/bin/esp-r \
-              --prefix PATH : $out/bin
-
-            wrapProgram $out/bin/esp-r \
-              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm pkgs.imagemagick pkgs.xfig pkgs.fig2dev pkgs.nedit realCp ]}
           '';
         };
       };
