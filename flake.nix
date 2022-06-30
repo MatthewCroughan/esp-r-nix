@@ -6,13 +6,15 @@
       flake = false;
     };
     rad5r-src = {
-      url = "github:NREL/Radiance/5.2.2";
+      url = "github:NREL/Radiance/2fcca99ace2f2435f32a09525ad31f2b3be3c1bc";
       flake = false;
     };
   };
   outputs = { self, nixpkgs, esp-r-src, rad5r-src }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      realCsh = pkgs.writeShellScriptBin "csh"
+        ''${pkgs.tcsh}/bin/tcsh "$@"'';
     in
     {
       packages.x86_64-linux = {
@@ -27,11 +29,11 @@
         rad5r = pkgs.stdenv.mkDerivation {
           name = "rad5r";
           src = rad5r-src;
-          buildInputs = with pkgs; [ libGLU libtiff ];
+          buildInputs = with pkgs; [ libGLU qt5.full libtiff realCsh tk ];
           nativeBuildInputs = with pkgs; [ cmake ];
-          cmakeFlags = [
-            "-DBUILD_HEADLESS=1"
-          ];
+          prePatch = ''
+            sed -i '/fixup_bundle/d' InstallRules/dependencies.cmake.in
+          '';
         };
         esp-r = pkgs.stdenv.mkDerivation {
           name = "esp-r";
@@ -65,7 +67,7 @@
               --prefix PATH : $out/bin
 
             wrapProgram $out/bin/esp-r \
-              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm ]}
+              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm pkgs.imagemagick pkgs.xfig pkgs.fig2dev pkgs.xorg.libXft.dev ]}
           '';
         };
       };

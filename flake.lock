@@ -31,17 +31,17 @@
     "rad5r-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1535820159,
-        "narHash": "sha256-3B8sTrE9SEuBPjhbepZN8NwK9PFnOgTMdB+x++sEqTc=",
+        "lastModified": 1639788236,
+        "narHash": "sha256-1mQe0Tvglm3MkRdLKAG/ocff71NCPDJEDq4T6qO4o1M=",
         "owner": "NREL",
         "repo": "Radiance",
-        "rev": "a46558bb5f7ee140f732522bf10a578ebcc6d4cd",
+        "rev": "2fcca99ace2f2435f32a09525ad31f2b3be3c1bc",
         "type": "github"
       },
       "original": {
         "owner": "NREL",
-        "ref": "5.2.2",
         "repo": "Radiance",
+        "rev": "2fcca99ace2f2435f32a09525ad31f2b3be3c1bc",
         "type": "github"
       }
     },
