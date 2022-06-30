@@ -15,6 +15,8 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       realCsh = pkgs.writeShellScriptBin "csh"
         ''${pkgs.tcsh}/bin/tcsh "$@"'';
+      realCp = pkgs.writeShellScriptBin "cp"
+        ''${pkgs.coreutils}/bin/cp --no-preserve=mode "$@"'';
     in
     {
       packages.x86_64-linux = {
@@ -67,7 +69,7 @@
               --prefix PATH : $out/bin
 
             wrapProgram $out/bin/esp-r \
-              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm pkgs.imagemagick pkgs.xfig pkgs.fig2dev pkgs.xorg.libXft.dev ]}
+              --prefix PATH : ${nixpkgs.lib.makeBinPath [ self.packages.x86_64-linux.rad5r pkgs.xterm pkgs.imagemagick pkgs.xfig pkgs.fig2dev pkgs.nedit realCp ]}
           '';
         };
       };
