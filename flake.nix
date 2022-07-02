@@ -44,6 +44,7 @@
           # have been deleted by the authors. But they never tested their code.
           # https://github.com/NREL/Radiance/issues/15
           postFixup = ''
+            cp ${rad5r-missingFiles}/lib/adobe.cal $out/lib
             cp ${rad5r-missingFiles}/lib/dirt.cal $out/lib
             cp ${rad5r-missingFiles}/lib/picture.cal $out/lib
           '';
@@ -91,7 +92,7 @@
                 --replace /opt/esp-r $out
             done
 
-            ./Install --debug -d $out
+            ./Install -d $out
           '';
         };
       };
