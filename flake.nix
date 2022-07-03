@@ -39,6 +39,20 @@
           nativeBuildInputs = with pkgs; [ cmake ];
           prePatch = ''
             sed -i '/fixup_bundle/d' InstallRules/dependencies.cmake.in
+
+            # The font 8x13 seems to be used, but I cannot figure out how to get
+            # this into the closure for this package. But it seems like the font
+            # 6x13 is always available on all X servers, so this patch makes the
+            # code use that instead. This is still impure, and should be fixed,
+            # no pun intended. "The "6x13" font is usually also available under
+            # the alias "fixed", a font name that is expected to be available on
+            # every X server. "
+            # https://en.wikipedia.org/wiki/Fixed_(typeface)
+            for i in $(grep -rl '8x13')
+            do
+              substituteInPlace $i \
+                --replace 8x13 6x13
+            done
           '';
           # Some files are missing from the latest radiance, that shouldn't
           # have been deleted by the authors. But they never tested their code.
