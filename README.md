@@ -8,6 +8,8 @@ to reproduce program, which is an under-documented runtime dependency of esp-r.
 [^1]: https://en.wikipedia.org/wiki/ESP-r
 [^2]: https://floyd.lbl.gov/radiance/framed.html
 
+[Watch the talk on how this code was made](https://www.youtube.com/watch?v=e-a6O_5Grp4)
+
 ![esp-r](/../images/esp-r.png)
 
 # Usage
