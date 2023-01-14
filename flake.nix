@@ -6,7 +6,7 @@
       flake = false;
     };
     esp-r-src = {
-      url = "https://www.esru.strath.ac.uk/Downloads/esp-r/ESP-r_V13.3.14_Src.tar.gz";
+      url = "https://github.com/matthewcroughan/esp-r-nix/releases/download/v13.3.14/ESP-r_V13.3.14_Src-repacked.tar.zst";
       flake = false;
     };
     rad5r-src = {
