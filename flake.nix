@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     rad5r-missingFiles = {
-      url = "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz";
+      url = "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-missingFiles.tar.zst";
       flake = false;
     };
     esp-r-src = {
@@ -10,7 +10,7 @@
       flake = false;
     };
     rad5r-src = {
-      url = "github:NREL/Radiance/2fcca99ace2f2435f32a09525ad31f2b3be3c1bc";
+      url = "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-src.tar.zst";
       flake = false;
     };
   };

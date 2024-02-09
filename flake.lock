@@ -31,30 +31,27 @@
     "rad5r-missingFiles": {
       "flake": false,
       "locked": {
+        "lastModified": 1707512369,
         "narHash": "sha256-TI44uriIuQG0VZ0DJpt7CqEMUo+k3YKWdJRDqJASTIU=",
         "type": "tarball",
-        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz"
+        "url": "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-missingFiles.tar.zst"
       },
       "original": {
         "type": "tarball",
-        "url": "https://floyd.lbl.gov/radiance/dist/rad5R2supp.tar.gz"
+        "url": "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-missingFiles.tar.zst"
       }
     },
     "rad5r-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1639788236,
+        "lastModified": 1707512339,
         "narHash": "sha256-1mQe0Tvglm3MkRdLKAG/ocff71NCPDJEDq4T6qO4o1M=",
-        "owner": "NREL",
-        "repo": "Radiance",
-        "rev": "2fcca99ace2f2435f32a09525ad31f2b3be3c1bc",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-src.tar.zst"
       },
       "original": {
-        "owner": "NREL",
-        "repo": "Radiance",
-        "rev": "2fcca99ace2f2435f32a09525ad31f2b3be3c1bc",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/MatthewCroughan/esp-r-nix/releases/download/v13.3.14/rad5r-src.tar.zst"
       }
     },
     "root": {
